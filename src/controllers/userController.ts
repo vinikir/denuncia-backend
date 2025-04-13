@@ -9,7 +9,7 @@ class UserControlle{
     public async create(req: Request, res: Response) : Promise<object>{
         try{
             
-            const {  nome, login, senha }: UserInterface = req.body; 
+            const {  nome, login, senha, admin }: UserInterface = req.body; 
             
             if(( typeof senha == "undefined" || senha == '' )  ){
                 return ReturnErroPadrao( res, 0)
@@ -20,7 +20,8 @@ class UserControlle{
             let user:UserInterface = {
                 ativo: true,
                 nome, 
-                login
+                login,
+                admin
             }
             const hashPassword =  await bcrypt.hash( senha, 8)
            
